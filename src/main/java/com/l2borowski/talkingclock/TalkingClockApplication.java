@@ -13,12 +13,17 @@ public class TalkingClockApplication
 	public static void main(String[] args)
 	{
 		SpringApplication.run(TalkingClockApplication.class, args);
+		printLiteralCurrentTime();
+	}
+
+	public static String printLiteralCurrentTime()
+	{
+		String literalCurrentTime = new String();
 
 		DateFormat timeFormat = new SimpleDateFormat("HH:mm");
-		long currentTime = System.currentTimeMillis();
-		Time time = new Time(currentTime);
+		Time currentTime = new Time(System.currentTimeMillis());
+		String currentTimeStr = timeFormat.format(currentTime).toString();
 
-		String currentTimeStr = timeFormat.format(time).toString();
 		int currentHour = Integer.parseInt(currentTimeStr.split(":")[0]);
 		int currentMinute = Integer.parseInt(currentTimeStr.split(":")[1]);
 
@@ -32,11 +37,11 @@ public class TalkingClockApplication
 			if (currentMinute <= 29)
 			{
 				// Print literal minutes followed by word 'past' & literal current hour, if current minute is less or equal to 29
-				System.out.println(getLiteralMinute(currentMinute) + " past " + getLiteralHour(currentHour));
+				System.out.println(getLiteralMinute(currentMinute) + " past " + getLiteralHour(currentHour).toLowerCase());
 			}
 			else if (currentMinute == 30)
 			{
-				// If current minute is at 30, print 'Half past' followed by literal hour
+				// If current minute is at 30, print 'Half past' followed by literal current hour
 				System.out.println("Half past " + getLiteralHour(currentHour));
 			}
 			else
@@ -44,9 +49,11 @@ public class TalkingClockApplication
 				// If current minute is higher than 30, print literal remaining minutes to the next hour, followed by 'to' & literal next hour.
 				int remainingMinutes = 60 - currentMinute;
 				int nextHour = 1 + currentHour;
-				System.out.println(getLiteralMinute(remainingMinutes) + " to " + getLiteralHour(nextHour));
+				System.out.println(getLiteralMinute(remainingMinutes) + " to " + getLiteralHour(nextHour).toLowerCase());
 			}
 		}
+
+		return literalCurrentTime;
 	}
 
 	public static String getLiteralHour(int hour)
