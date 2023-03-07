@@ -1,1 +1,1 @@
-# Java-talking-clock-coding-challange by Lukasz Borowski
+# Java-talking-clock-coding-challenge by Lukasz Borowski
