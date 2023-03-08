@@ -2,6 +2,7 @@ package com.l2borowski.talkingclock;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -190,7 +191,7 @@ class TalkingClockTests
 	}
 
 	@Test
-	void itShouldPrintElevenLiteral()
+	void itShouldReturnElevenHourLiteral()
 	{
 		// given
 		int hour = 11;
@@ -200,6 +201,20 @@ class TalkingClockTests
 
 		// then
 		String expected = "Eleven";
+		Assertions.assertEquals(expected, result);
+	}
+
+	@Test
+	void itShouldReturnTwentyThreeMinuteLiteral()
+	{
+		// given
+		int minute = 23;
+
+		// when
+		String result = talkingClock.getLiteralMinute(minute);
+
+		// then
+		String expected = "Twenty three";
 		Assertions.assertEquals(expected, result);
 	}
 }
