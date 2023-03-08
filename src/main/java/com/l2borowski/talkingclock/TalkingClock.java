@@ -20,16 +20,30 @@ public class TalkingClock
 			Time currentTime = new Time(System.currentTimeMillis());
 			String currentTimeStr = timeFormat.format(currentTime).toString();
 
-			int currentHour = Integer.parseInt(currentTimeStr.split(":")[0]);
-			int currentMinute = Integer.parseInt(currentTimeStr.split(":")[1]);
-			printLiteralTime(currentHour, currentMinute);
+			try
+			{
+				int currentHour = Integer.parseInt(currentTimeStr.split(":")[0]);
+				int currentMinute = Integer.parseInt(currentTimeStr.split(":")[1]);
+				printLiteralTime(currentHour, currentMinute);
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 		else
 		{
-			// Argument provided. Use provided hour and minute
-			int providedHour = Integer.parseInt(args[0].split(":")[0]);
-			int providedMinute = Integer.parseInt(args[0].split(":")[1]);
-			printLiteralTime(providedHour, providedMinute);
+			try
+			{
+				// Argument provided. Use provided hour and minute
+				int providedHour = Integer.parseInt(args[0].split(":")[0]);
+				int providedMinute = Integer.parseInt(args[0].split(":")[1]);
+				printLiteralTime(providedHour, providedMinute);
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 
@@ -70,6 +84,12 @@ public class TalkingClock
 
 	public static String getLiteralHour(int hour)
 	{
+		// Thrown an exception if the input value is not a valid hour
+		if (hour < 0 || hour > 23)
+		{
+			throw new IllegalArgumentException();
+		}
+
 		String literalHour = new String();
 		switch (hour)
 		{
@@ -132,8 +152,13 @@ public class TalkingClock
 
 	public static String getLiteralMinute(int minute)
 	{
-		String literalMinute = new String();
+		// Thrown an exception if the input value is not a valid minute
+		if (minute < 0 || minute > 59)
+		{
+			throw new IllegalArgumentException();
+		}
 
+		String literalMinute = new String();
 		switch (minute)
 		{
 			case 1:
