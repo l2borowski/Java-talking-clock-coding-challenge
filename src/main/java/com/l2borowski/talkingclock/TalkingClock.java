@@ -28,7 +28,7 @@ public class TalkingClock
 		{
 			// Argument provided. Use provided hour and minute
 			int providedHour = Integer.parseInt(args[0].split(":")[0]);
-			int providedMinute = Integer.parseInt(args[1].split(":")[1]);
+			int providedMinute = Integer.parseInt(args[0].split(":")[1]);
 			printLiteralTime(providedHour, providedMinute);
 		}
 	}
@@ -39,8 +39,9 @@ public class TalkingClock
 
 		if (minute <= 0)
 		{
-			// If minutes are equal to 0 then add "o'clock" after literal current hour
-			literalTime = getLiteralHour(hour) + " o'clock";
+			// If minutes are equal to 0 then add "o'clock" after literal current hour.
+			// In case hour == 12, print only 'Noon' and if hour == 0, print only 'Midnight'
+			literalTime = (hour == 0 || hour == 12) ? getLiteralHour(hour) : getLiteralHour(hour) + " o'clock";
 		}
 		else
 		{
