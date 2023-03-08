@@ -160,6 +160,36 @@ class TalkingClockTests
 	}
 
 	@Test
+	void itShouldPrintNoon()
+	{
+		// given
+		int hour = 12;
+		int minute = 0;
+
+		// when
+		String result = talkingClock.printLiteralTime(hour, minute);
+
+		// then
+		String expected = "Noon";
+		Assertions.assertEquals(expected, result);
+	}
+
+	@Test
+	void itShouldPrintMidnight()
+	{
+		// given
+		int hour = 0;
+		int minute = 0;
+
+		// when
+		String result = talkingClock.printLiteralTime(hour, minute);
+
+		// then
+		String expected = "Midnight";
+		Assertions.assertEquals(expected, result);
+	}
+
+	@Test
 	void itShouldPrintElevenLiteral()
 	{
 		// given
